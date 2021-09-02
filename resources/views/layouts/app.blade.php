@@ -5,12 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Document</title>
+    <title>Hui testing</title>
   </head>
   <body>
-    <div class="bg-red-400 p-12">
-      zad
-    </div>
-    @yield('content')
+    <main class="min-h-screen bg-red-100">   
+      @yield('content')
+    </main>
   </body>
 </html>
