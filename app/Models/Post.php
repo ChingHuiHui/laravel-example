@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     // protected $fillable = ['title', 'excerpt', 'body'];
-    protected $guarded = [];
+    // protected $guarded = [];
 
     // fix the N+1 queries problem
     protected $with = ['category', 'author', 'comments'];
