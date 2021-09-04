@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -32,6 +34,14 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts');
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
+Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::get('/login', [SessionController::class, 'create'])->middleware('guest');
+Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
+
+Route::post('/logout', [SessionController::class, 'destroy']);
+
 // Route::get('/posts/{post}', function ($id) {
 //     // Find a post by its slug and pass it to a view called "post"
 //     return view('post', [
@@ -42,13 +52,13 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 
 Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $category->posts,
     ]);
 });
 
 Route::get('authors/{author:username}', function (User $author) {
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $author->posts,
     ]);
 });
