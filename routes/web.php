@@ -1,14 +1,13 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Models\Category;
 use App\Models\User;
-use App\Services\Newsletter;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\ValidationException;
 
 
 /*
@@ -22,25 +21,6 @@ use Illuminate\Validation\ValidationException;
 |
 */
 
-Route::post('/newsletter', function (Newsletter $newsletter) {
-    request()->validate([
-        'email' => 'required|email'
-    ]);
-
-    try {
-        // $newsletter = new Newsletter();
-        // $newsletter->subscribe(request('email'));
-
-        $newsletter->subscribe(request('email'));
-    } catch (Exception $e) {
-        throw ValidationException::withMessages([
-            'email' => 'This email could not be added to our newsletter list.'
-        ]);
-    }
-
-
-    return redirect('/posts')->with('success', 'You are now signed up for our newsletter!');
-});
 
 
 Route::get('/welcome', function () {
@@ -51,8 +31,9 @@ Route::get('/about', function () {
     return view('about',  ['name' => 'Huihui']);
 });
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::post('/newsletter', NewsletterController::class);
 
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::post('/posts/{post:slug}/comments', [PostCommentController::class, 'store']);
 
