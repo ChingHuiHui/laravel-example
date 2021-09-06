@@ -24,11 +24,22 @@
                 <a href="/register" class="text-xs font-bold uppercase">REGISTER</a>
                 @endguest --}}
                 @auth
-                <span class="text-xs font-bold uppercase">welcome, {{ auth()->user()->name }}</span>
-                <form action="/logout" method="post" class="text-xs font-semibold text-blue-500 ml-6">
-                    @csrf
+                <x-dropdown>
+                    <x-slot name="trigger">
+                        <button class="text-xs font-bold uppercase">welcome, {{ auth()->user()->name }}</button>
+                    </x-slot>
 
-                    <button type="submit">Log Out</button>
+                    <x-dropdown-item href="/admin/dashboard">Dashboard</x-dropdown-item>
+                    <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post
+                    </x-dropdown-item>
+                    <x-dropdown-item href="#" x-data="{}"
+                        @click.prevent="document.querySelector('#logout-form').submit()">
+                        Log Out
+                    </x-dropdown-item>
+
+                </x-dropdown>
+                <form id="logout-form" action="/logout" method="post" class="hidden">
+                    @csrf
                 </form>
                 @else
                 <a href="/register" class="text-xs font-bold uppercase">REGISTER</a>
