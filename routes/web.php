@@ -46,6 +46,9 @@ Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 
 Route::post('/logout', [SessionController::class, 'destroy']);
 
+
+Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+
 // Route::get('/posts/{post}', function ($id) {
 //     // Find a post by its slug and pass it to a view called "post"
 //     return view('post', [
