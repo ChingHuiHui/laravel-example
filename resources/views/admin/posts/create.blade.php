@@ -11,9 +11,8 @@
                 <x-form.input name="thumbnail" type="file" />
                 <x-form.input name="exceprt" />
                 <x-form.textarea name="body" />
-
-                <div class="mb-6">
-                    <label for="category_id" class="block mb-2 uppercase font-bold text-xs text-gray-700">Title</label>
+                <x-form.field>
+                    <x-form.label name="category_id" />
                     <select name="category_id" id="category_id" required>
                         @foreach (\App\Models\Category::all() as $category)
                         <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
@@ -21,11 +20,10 @@
                         @endforeach
                     </select>
 
-                    @error('category')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-                <x-submit-button>Publish</x-submit-button>
+                    <x-form.error name="category_id" />
+                </x-form.field>
+
+                <x-form.button>Publish</x-form.button>
             </form>
         </x-panel>
     </section>
