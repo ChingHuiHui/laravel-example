@@ -1,7 +1,9 @@
 <x-layout>
     <x-setting :heading="'Edit Post' . $post->title">
-        <form action="/admin/posts" method="POST" enctype="multipart/form-data">
+        <form action="/admin/posts/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
+
             <x-form.input name="title" :value="old('title', $post->title)" />
             <x-form.input name="slug" :value="old('title', $post->slug)" />
             <div class="flex mt-6">

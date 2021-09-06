@@ -52,7 +52,7 @@ Route::get('admin/posts/create', [AdminPostController::class, 'create'])->middle
 Route::post('admin/posts', [AdminPostController::class, 'store'])->middleware('admin');
 Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
 Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
-
+Route::patch('admin/posts/{post}', [AdminPostController::class, 'update'])->middleware('admin');
 
 // Route::get('/posts/{post}', function ($id) {
 //     // Find a post by its slug and pass it to a view called "post"
