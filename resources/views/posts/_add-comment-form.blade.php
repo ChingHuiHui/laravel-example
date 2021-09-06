@@ -1,6 +1,6 @@
 @auth
 <x-panel>
-    <form method="POST" action="/posts/{{ $post->slug }}/comments">
+    <form method="POST">
         @csrf
 
         <header class=" flex items-center ">
@@ -16,7 +16,8 @@
             @enderror
         </div>
         <div class="flex justify-end mt-6 pt-6 border-t border-gray-200 ">
-            <x-form.button>>Post</<x-form.button>
+            <button type="submit"
+                class="bg-blue-500 text-white uppercase font-semibold text-sm py-2 px-10 rounded-2xl hover:bg-blue-600">Submit</button>
         </div>
     </form>
 </x-panel>
