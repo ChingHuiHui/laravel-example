@@ -5,7 +5,7 @@
             <x-form.input name="title" />
             <x-form.input name="slug" />
             <x-form.input name="thumbnail" type="file" />
-            <x-form.input name="exceprt" />
+            <x-form.input name="excerpt" />
             <x-form.textarea name="body" />
             <x-form.field>
                 <x-form.label name="category_id" />
