@@ -20,7 +20,12 @@ class MustBeAdministrator
         // if (auth()->guest()) {
         //     abort()
         // }
-        if (auth()->user()?->username !== 'huihui') {
+
+        // if (auth()->user()?->username !== 'huihui') {
+        //     abort(Response::HTTP_FORBIDDEN);
+        // }
+
+        if (auth()->user()?->cannot('admin')) {
             abort(Response::HTTP_FORBIDDEN);
         }
 
